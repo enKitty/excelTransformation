@@ -28,26 +28,16 @@ if ($ext == 'xlsx') {
 $sheet = $objPHPExcel->getSheet(0);
 $highestRow = $sheet->getHighestRow(); // 取得总行数
 $highestColumn = $sheet->getHighestColumn(); // 取得总列数
-//$num = 1;
+
 for ($j = 1; $j <= $highestRow; $j++) {
     $str = '';
     for ($k = 'B'; $k <= $highestColumn; $k++) {
         $str .= $objPHPExcel->getActiveSheet()->getCell("$k$j")->getValue() . '\\';//读取单元格
     }
     $strs = explode("\\", $str);
-//    $add_data['xx'] = $strs[2];
-//    $add_data['xx'] = $strs[3];
     unset($strs[3]);
-//    print_r($str);
-//    exit();
-
     $data[] = $strs;
-//    $num++;
 }
-
-
-//print_r($data);
-//exit();
 
 $filename = "dataShanHai";
 $fp = fopen($filename, "a");
